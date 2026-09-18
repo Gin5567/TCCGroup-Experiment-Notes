@@ -25,5 +25,4 @@ minotaur/
   results.md      # 批量测试快照
 llvmta/
   README.md       # 示例、配置、输出和待解决问题
-weekly-report.md  # 上周周报可用文字
 ```

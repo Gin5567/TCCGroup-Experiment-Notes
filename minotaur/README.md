@@ -48,3 +48,48 @@ head -n 3 ~/research_ariane/server_batch/results.csv
 - [bsort：完整对比和结论](bsort.md)
 - [批量结果：初跑与重跑快照](results.md)
 
+## 批量运行与重跑
+
+批量实验使用以下脚本：
+
+- `~/research_ariane/run_both_tacle_51.py`：两分支批量运行。
+- `~/research_ariane/rerun_timeout_parallel.py`：未完成项目的并行重跑。
+
+首次批量运行曾采用7200秒超时，后续对未完成项目延长运行时间。具体统计见[批量结果](https://chatgpt.com/c/results.md)。
+
+### 2026-09-21 后续重跑
+
+以下命令来自实际启动记录；该轮运行发生在本页引用的02:26统计快照之后：
+
+```bash
+nohup python3 -u ~/research_ariane/rerun_timeout_parallel.py \
+  --workers 9 \
+  --timeout 2592000 \
+  > ~/research_ariane/server_batch/rerun_parallel_final.progress.log \
+  2>&1 < /dev/null &
+```
+
+本次设置：
+
+| 参数        | 值        | 含义                                           |
+| ----------- | --------- | ---------------------------------------------- |
+| `--workers` | 9         | 配置的最大并发任务数，实际活跃数取决于剩余任务 |
+| `--timeout` | 2592000秒 | 每项任务的主机运行超时上限，即30天             |
+
+可查看进度：
+
+```bash
+tail -n 30 ~/research_ariane/server_batch/rerun_parallel_final.progress.log
+```
+
+### 结果整理方法
+
+每次汇总记录查询时间，并保留原始CSV快照。根据分支、测例和输入哈希整理各次尝试，优先使用配置可比的成功结果，再进行双分支配对。
+
+统计时分别报告：
+
+- 运行尝试数量和状态分布。
+- 不同测例数量及各分支可用状态。
+- 同输入双分支成功的配对数量。
+- LSU inversion计数变化及主体周期开销。
+- 未完成项目及其处理情况。

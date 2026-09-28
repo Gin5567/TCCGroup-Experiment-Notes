@@ -4,9 +4,9 @@
 
 ## 从哪里开始
 
-| 方向            | 先读什么                                                     | 当前进度                                                     |
+| 方向            | 目录说明                                                     | 当前进度                                                     |
 | --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Ariane/MINOTAuR | [实验说明](https://chatgpt.com/c/minotaur/README.md)、[bsort 单例](https://chatgpt.com/c/minotaur/bsort.md)、[批量结果](https://chatgpt.com/c/minotaur/results.md) | 截至2026-09-21 02:26，已开展51个测例的测试；46个获得同输入双分支成功结果，其中27个观测到 LSU inversion 从 Ariane 非零降至 MINOTAuR 0 |
+| Ariane/MINOTAuR | [实验说明](https://chatgpt.com/c/minotaur/README.md)、[bsort 单例](https://chatgpt.com/c/minotaur/bsort.md)、[批量结果](https://chatgpt.com/c/minotaur/results.md) | 已开展51个测例的测试。最新统计中，Ariane成功48个，MINOTAuR成功47个，47个测例两分支均成功。其中28个测例在Ariane中记录到非零LSU inversion，在MINOTAuR中均降为0；其余19个双分支成功测例的LSU计数均为0。部分测例仍缺少成功结果，完整统计见[批量结果](https://chatgpt.com/c/minotaur/results.md)。 |
 | LLVM-TA+        | [学习与运行记录](https://chatgpt.com/c/llvmta/README.md)     | 已跑通循环示例，继续学习 LLVM IR、SSA、phi、基本块及时间分析流程 |
 | 相关文献阅读    | [阅读记录](https://chatgpt.com/c/papers/README.md)           | 围绕 pWCET、可预测矩阵运算和缓存分析开展初步学习，逐步整理与当前课题的联系 |
 

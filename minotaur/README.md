@@ -93,3 +93,7 @@ tail -n 30 ~/research_ariane/server_batch/rerun_parallel_final.progress.log
 - 同输入双分支成功的配对数量。
 - LSU inversion计数变化及主体周期开销。
 - 未完成项目及其处理情况。
+
+### 最新结果汇总
+
+最新结果汇总中，Ariane已有48个测例成功，MINOTAuR已有47个测例成功，47个测例两分支均成功。尚未形成双分支成功结果的测例为ammunition、filterbank、pm和susan。具体状态及统计口径见[批量测试记录](results.md)。

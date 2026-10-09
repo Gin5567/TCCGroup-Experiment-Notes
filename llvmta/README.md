@@ -26,7 +26,15 @@ python3 run.py -s my_loop10 -o my_loop10/output -t my_loop10/tmp
 2. 查阅过程中生成的 LLVM IR，例如 `testcases/dirforgdb/test.ll`、`unoptimized.ll`、`optimized.ll`，观察编译后的控制流。
 3. 在 `my_loop10/output` 中查看 `WCET.json` 和 `0_core_wcettask0_MicroArchAnalysis.txt`，分别记录汇总结果与微架构分析信息。
 
-当前一次运行中，`WCET.json` 对 `task0` 给出的 WCET 为 **3360**；微架构分析文本报告的 WCET 为 **3361**、BCET 为 **2193**，并记录 L1I misses 3、L1D misses 5、L2 misses 8、stores 5、writebacks 10。**两个文件中的 WCET 相差 1 周期，原因尚未核实**；引用结果时应同时写明来源文件，不把两者改写成同一个数值。
+此前记录中 `my_loop10` 的 `WCET.json` 为3360、微架构分析文本为3361，两者相差1周期；该差异在复核中已消失，原先“原因尚未核实”的当前状态已过时。已确认的工具验证结果如下，均为此前完成的验证，不是第6周新增实验：
+
+| 示例 | WCET | BCET | L1I misses | L1D misses | L2 misses | 状态 |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| my_loop10 | 3,360 | 2,193 | 3 | 5 | 8 | 已运行并复核 |
+| my_loop100 | 23,578 | 22,213 | 5 | 5 | 10 | 已运行 |
+| my_loop1000 | — | — | — | — | — | 尚未运行 |
+
+历史 `my_loop10` 输出还记录 stores 5、writebacks 10。以上时间界属于工具配置的模型，目前尚未建立与 MINOTAuR 匹配的硬件分析模型。
 
 当前示例使用的配置包含乱序模型、分离的 L1 指令/数据缓存、L2 缓存及内存延迟参数；精确参数以本次 `CoreInfo.json` 和运行脚本实际读入值为准。学习重点是“C 程序 → LLVM IR → 控制流和微架构分析 → 时间界”的输入输出关系。后续若要用于 RISC-V 原型，还需要检查目标指令集和处理器模型的支持情况、配置与硬件的一致性，并用实测数据校验；目前的 `my_loop10` 结果不能直接移用。
 

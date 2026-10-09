@@ -55,11 +55,11 @@ head -n 3 ~/research_ariane/server_batch/results.csv
 - `~/research_ariane/run_both_tacle_51.py`：两分支批量运行。
 - `~/research_ariane/rerun_timeout_parallel.py`：未完成项目的并行重跑。
 
-首次批量运行曾采用7200秒超时，后续对未完成项目延长运行时间。具体统计见[批量结果](https://chatgpt.com/c/results.md)。
+首次批量运行曾采用7200秒超时，后续对未完成项目延长运行时间。具体统计见[批量结果](results.md)。
 
 ### 2026-09-21 后续重跑
 
-以下命令来自实际启动记录；该轮运行发生在本页引用的02:26统计快照之后：
+以下命令来自实际启动记录；该轮运行发生在2026-09-21 02:26历史统计快照之后：
 
 ```bash
 nohup python3 -u ~/research_ariane/rerun_timeout_parallel.py \
@@ -91,9 +91,11 @@ tail -n 30 ~/research_ariane/server_batch/rerun_parallel_final.progress.log
 - 运行尝试数量和状态分布。
 - 不同测例数量及各分支可用状态。
 - 同输入双分支成功的配对数量。
-- LSU inversion计数变化及主体周期开销。
+- LSU inversion 检测计数变化及执行周期开销，明确是否扣除 `base_time`。
 - 未完成项目及其处理情况。
 
 ### 最新结果汇总
 
-最新结果汇总中，Ariane已有48个测例成功，MINOTAuR已有47个测例成功，47个测例两分支均成功。尚未形成双分支成功结果的测例为ammunition、filterbank、pm和susan。具体状态及统计口径见[批量测试记录](results.md)。
+第6周已确认汇总：CSV 有151条历史记录、51个不同测例；实验排除项为 mpeg2、susan，其中 susan 为 Ariane TIMEOUT / MINOTAuR MISSING，不计入有效测例成功率。排除后50个有效测例均获得双分支 OK；29个测例的 Ariane LSU inversion 检测计数非零，MINOTAuR 的50个测例均为0。按各测例 `total_time` 相对增幅等权统计，平均约9.72%，中位数约8.35%。相关检测现象受到抑制，不能据此宣称消除了所有时序异常。
+
+此前“48个 Ariane 成功、47个 MINOTAuR 成功、47个双分支成功”的当前进展已过时，当时统计保留在[历史快照](results.md)。本次更新环境无法访问服务器 CSV，完整最新配对表待取得原始数据后补充。bsort 的连续检测区间解释与待完成分析见[波形记录](bsort.md)。
